@@ -1,7 +1,7 @@
 package com;
 
 public class QuickSort {
-	public void Sort(String arr[], int begin, int end) {
+	public void Sort(String[] arr, int begin, int end) {
 		if(begin<end) {
 			int partitionIndex = partition(arr,begin,end);
 			Sort(arr,begin,partitionIndex-1);
@@ -9,7 +9,7 @@ public class QuickSort {
 		}
 	}
 	
-	private int partition(String arr[], int begin, int end) {
+	private int partition(String[] arr, int begin, int end) {
 		String pivot = arr[end];
 		int i = (begin-1);
 		

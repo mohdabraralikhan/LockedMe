@@ -1,6 +1,7 @@
 package com;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -23,13 +24,15 @@ public class App {
 		Options options = new Options();
 
 		System.out.println("Enter a the folder");
-		try (Scanner scanner = new Scanner(System.in)) {
+		Scanner scanner = new Scanner(System.in);
+		try {
 			String path = scanner.nextLine();
 
 			while (true) {
 				options.displayOptions();
 				System.out.println("Select an Option");
 				option = scanner.nextInt();
+				scanner.nextLine();
 
 				switch (option) {
 				case 1:
@@ -37,9 +40,13 @@ public class App {
 					break;
 
 				case 2:
-					System.out.println("Select a sub-catogery");
-					subOption = scanner.nextInt();
-					scanner.nextLine();
+					
+					
+					loop:while(true){
+						System.out.println("Select a sub-catogery");
+						subOption = scanner.nextInt();
+						scanner.nextLine();
+
 					switch (subOption) {
 
 					case 1:
@@ -50,8 +57,11 @@ public class App {
 
 					case 2:
 						System.out.println("Enter a file name to delete");
-						file = scanner.nextLine();
-						options.deleteFile(path, file);
+						
+						if(scanner.hasNextLine()) {
+							file = scanner.nextLine();
+							options.deleteFile(path, file);
+						}
 						break;
 
 					case 3:
@@ -59,12 +69,14 @@ public class App {
 						file = scanner.nextLine();
 						options.searchFile(path, file);
 						break;
-					default:
-						System.out.println("Please select a valid sub-category");
+					case 4:
+						 System.out.println("Closed sub-menu");
+			                break loop;
+			                
+			            default:
+			                System.out.println("Please select a valid sub-category");
 						break;
-					}
-					break;
-					
+					}}break;
 				case 3:
 					options.closeApplication();
 					System.out.println("Application Terminated");
@@ -76,5 +88,10 @@ public class App {
 
 			}
 		}
-	}
-}
+		catch(InputMismatchException e) {
+			System.out.println("Invalid input. Please enter a valid option number.");
+            scanner.nextLine();
+
+		}
+		scanner.close();
+	}}

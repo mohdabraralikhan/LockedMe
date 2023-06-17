@@ -9,43 +9,48 @@ public class Options {
 	public void displayOptions() {
 
 		System.out.println("---------------------------------------" + "\n1.List all the files in the directory."
-				+ "\n2.Perform file operations\n" + "\t1.Add a file\t" + "\t2.Delete a file" + " \t 3.Search a file"
+				+ "\n2.Perform file operations\n" + "\t1.Add a file\t" + "\t2.Delete a file" + " \t 3.Search a file"+" \t 3.Main menu"
 				+ "\n3.Close the application\n" + "---------------------------------------");
 	}
 
+
 	public void displayFileNames(String path) {
-		
-		QuickSort Quick = new QuickSort();
-		File folder = new File(path);
-		
-		if (folder.isDirectory()) {
+	    File folder = new File(path);
 
-			String[] files = folder.list();
-			Quick.Sort(files, 0, files.length-1);
-			System.out.println("---------------------------------------");
-			System.out.println("Sorting by filename in ascending order");
+	    if (folder.isDirectory()) {
+	        String[] files = folder.list();
 
-			for (String file : files) {
-				System.out.println(file);
-			}
-			System.out.println("---------------------------------------");
+	        QuickSort quickSort = new QuickSort();
+	        quickSort.Sort(files, 0, files.length - 1);
 
-		} else {
-			System.out.println(folder.getAbsolutePath() + " is not a directory");
-		}
+	        System.out.println("---------------------------------------");
+	        System.out.println("Sorting by filename in ascending order");
+
+	        for (String file : files) {
+	            System.out.println(file);
+	        }
+	        System.out.println("---------------------------------------");
+	    } else {
+	        System.out.println(folder.getAbsolutePath() + " is not a directory");
+	    }
 	}
 
 	public void deleteFile(String path, String filename) {
 
-		File file = new File(path + "\\\\" + filename);
+		String filePath= path + File.separator + filename;
+		File file = new File(filePath);
 		if(file.exists()) {
 		if (file.delete()) {
 			System.out.println("Deleted file scuccessfully!");
 
-		}}
-		else {System.out.println("File not found");}
+		} else {
+            System.out.println("Failed to delete the file.");
+        }
+		}else {System.out.println("File not found");}
+		}
+		
 
-	}
+	
 
 	public void searchFile(String path, String file) {
 		File folder = new File(path);
