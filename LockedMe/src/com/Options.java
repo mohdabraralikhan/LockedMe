@@ -64,7 +64,24 @@ public class Options {
 	}
 
 
+	public void closeApplication() {
+		System.exit(0);
+	}
 
+
+public void addFile(String path,String file) throws IOException {
+	try {
+	File newFile = new File(path + "\\" + file);
+		if((newFile.createNewFile())) {
+			 System.out.println("File created: " + newFile.getName());
+		}
+		else {
+	        System.out.println("File already exists.");
+	      }
+	}catch (IOException e) {
+	      System.out.println("An error occurred.");
+	      e.printStackTrace();
+	    }
 
 
 }
