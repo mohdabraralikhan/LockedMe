@@ -35,9 +35,15 @@ public class Options {
 			System.out.println(folder.getAbsolutePath() + " is not a directory");
 		}
 	}
+	public void deleteFile(String path,String filename) {
+		
+		File file = new File(path + "\\\\" + filename);
+			if (file.delete()) {
+		}
+			System.out.println("Deleted file scuccessfully!");
+		
 
-
-
+	}
 	
 }
 }
