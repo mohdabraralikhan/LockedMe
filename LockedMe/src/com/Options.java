@@ -2,17 +2,17 @@ package com;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class Options {
-	
+
 	public void displayOptions() {
 
-		System.out.println("---------------------------------------" + "\n1.List all the files in the directory." + "\n2.Perform file operations\n"
-				+ "\t1.Add a file\t" + "\t2.Delete a file" + " \t 3.Search a file" + "\n3.Close the application\n"+"---------------------------------------");
+		System.out.println("---------------------------------------" + "\n1.List all the files in the directory."
+				+ "\n2.Perform file operations\n" + "\t1.Add a file\t" + "\t2.Delete a file" + " \t 3.Search a file"
+				+ "\n3.Close the application\n" + "---------------------------------------");
 	}
 
 	public void displayFileNames(String path) {
@@ -35,54 +35,50 @@ public class Options {
 			System.out.println(folder.getAbsolutePath() + " is not a directory");
 		}
 	}
-	public void deleteFile(String path,String filename) {
-		
+
+	public void deleteFile(String path, String filename) {
+
 		File file = new File(path + "\\\\" + filename);
-			if (file.delete()) {
+		if (file.delete()) {
 		}
-			System.out.println("Deleted file scuccessfully!");
-		
+		System.out.println("Deleted file scuccessfully!");
 
 	}
-	
 
 	public void searchFile(String path, String file) {
 		boolean found = false;
 		File folder = new File(path);
 		String[] files = folder.list();
-		for(int i=0;i < files.length;i++) {
-			if(file.equals(files[i])) {
+		for (int i = 0; i < files.length; i++) {
+			if (file.equals(files[i])) {
 				System.out.println("File found " + file);
 				found = true;
 				break;
 			}
-			
+
 		}
-		if(!found){ 
+		if (!found) {
 			System.out.println("File not found " + file);
 		}
 	}
 
-
 	public void closeApplication() {
+		System.out.println("---------------------------------------" + "Application closed" + "---------------------------------------");
 		System.exit(0);
 	}
 
-
-public void addFile(String path,String file) throws IOException {
-	try {
-	File newFile = new File(path + "\\" + file);
-		if((newFile.createNewFile())) {
-			 System.out.println("File created: " + newFile.getName());
+	public void addFile(String path, String file) throws IOException {
+		try {
+			File newFile = new File(path + "\\" + file);
+			if ((newFile.createNewFile())) {
+				System.out.println("File created: " + newFile.getName());
+			} else {
+				System.out.println("File already exists.");
+			}
+		} catch (IOException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
 		}
-		else {
-	        System.out.println("File already exists.");
-	      }
-	}catch (IOException e) {
-	      System.out.println("An error occurred.");
-	      e.printStackTrace();
-	    }
 
-
-}
+	}
 }
