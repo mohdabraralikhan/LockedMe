@@ -38,9 +38,12 @@ public class Options {
 	public void deleteFile(String path, String filename) {
 
 		File file = new File(path + "\\\\" + filename);
+		if(file.exists()) {
 		if (file.delete()) {
-		}
-		System.out.println("Deleted file scuccessfully!");
+			System.out.println("Deleted file scuccessfully!");
+
+		}}
+		else {System.out.println("File not found");}
 
 	}
 
