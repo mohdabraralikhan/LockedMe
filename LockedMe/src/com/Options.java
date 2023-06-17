@@ -2,11 +2,12 @@ package com;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Options {
-	
-QuickSort Quick = new QuickSort();
+
 	public void displayOptions() {
 
 		System.out.println("---------------------------------------" + "\n1.List all the files in the directory."
@@ -19,12 +20,9 @@ QuickSort Quick = new QuickSort();
 		File folder = new File(path);
 		if (folder.isDirectory()) {
 
-			String[] files = folder.list();
-			System.out.println("Size of the array" + files.length);
-			Quick.Sort(files,0, files.length-1);
+			List<String> files = Arrays.asList(folder.list());
 
-			//Collections.sort(files, String.CASE_INSENSITIVE_ORDER);
-			
+			Collections.sort(files, String.CASE_INSENSITIVE_ORDER);
 			System.out.println("---------------------------------------");
 			System.out.println("Sorting by filename in ascending order");
 
