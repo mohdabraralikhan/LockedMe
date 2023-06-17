@@ -45,20 +45,10 @@ public class Options {
 	}
 
 	public void searchFile(String path, String file) {
-		boolean found = false;
 		File folder = new File(path);
+		BinarySearch Binary = new BinarySearch();
 		String[] files = folder.list();
-		for (int i = 0; i < files.length; i++) {
-			if (file.equals(files[i])) {
-				System.out.println("File found " + file);
-				found = true;
-				break;
-			}
-
-		}
-		if (!found) {
-			System.out.println("File not found " + file);
-		}
+		Binary.Search(files,0, files.length, file);
 	}
 
 	public void closeApplication() {
