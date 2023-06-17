@@ -2,9 +2,7 @@ package com;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
 
 public class Options {
 
@@ -16,13 +14,14 @@ public class Options {
 	}
 
 	public void displayFileNames(String path) {
-
+		
+		QuickSort Quick = new QuickSort();
 		File folder = new File(path);
+		
 		if (folder.isDirectory()) {
 
-			List<String> files = Arrays.asList(folder.list());
-
-			Collections.sort(files, String.CASE_INSENSITIVE_ORDER);
+			String[] files = folder.list();
+			Quick.Sort(files, 0, files.length-1);
 			System.out.println("---------------------------------------");
 			System.out.println("Sorting by filename in ascending order");
 
